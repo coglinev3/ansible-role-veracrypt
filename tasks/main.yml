@@ -1,0 +1,25 @@
+---
+# file: roles/veracrypt/tasks/main.yml
+
+- name: Gather os specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      skip: true
+  tags: vars
+
+# Setup/install tasks.
+- include_tasks: "{{ item }}"
+  with_first_found:
+    - files:
+        - "repo-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "repo-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "repo-{{ ansible_distribution }}.yml"
+        - "repo-{{ ansible_os_family }}.yml"
+      skip: true
+
+- include_tasks: "setup-{{ ansible_os_family }}.yml"

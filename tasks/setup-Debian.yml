@@ -1,0 +1,10 @@
+---
+# file: roles/veracrypt/tasks/setup-Debian.yml
+
+- name: "Debian: Install veracrypt"
+  become: true
+  apt:
+    name: "{{ veracrypt_packages }}"
+    state: "{{ veracrypt_packages_state }}"
+    install_recommends: "no"
+  when: ppa_unit193 is defined and not ppa_unit193.failed

@@ -1,0 +1,21 @@
+---
+# file: roles/veracrypt/tasks/repo-Debian.yml
+
+- name: "Debian/Mint: Set codename for repository"
+  set_fact:
+    vc_repo_codename: "{{ debian_ubuntu_matrix[ansible_distribution_release]['ubuntu_distribution_release'] }}"
+  when: not ansible_distribution == "Ubuntu"
+
+- name: "Ubuntu: Set codename for repository"
+  set_fact:
+    vc_repo_codename: "{{ ansible_distribution_release }}"
+  when: ansible_distribution == "Ubuntu"
+
+- name: "Debian: Add VeraCrypt repository from PPA Unit 193"
+  become: true
+  apt_repository:
+    repo: "ppa:unit193/encryption"
+    codename: "{{ vc_repo_codename }}"
+    state: present
+    mode: "0644"
+  register: ppa_unit193

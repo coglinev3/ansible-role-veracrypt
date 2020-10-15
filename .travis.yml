@@ -1,0 +1,65 @@
+---
+dist: focal
+addons:
+  apt:
+    packages:
+      - libssl-dev
+      - libffi-dev
+      - python3
+      - python3-pip
+      - python3-setuptools
+      - python3-software-properties
+      - python3-wheel
+
+language: minimal
+
+services:
+  - docker
+
+env:
+  global:
+    - ROLE_NAME: veracrypt
+    - MOLECULE_DISTRO: coglinev3/ansible
+    - PATH: /home/travis/.local/bin:${PATH}
+  matrix:
+    - MOLECULE_DISTRO_VERSION: centos-7
+    - MOLECULE_DISTRO_VERSION: centos-8
+    - MOLECULE_DISTRO_VERSION: debian-9
+      MOLECULE_DISTRO_CMD: /bin/systemd
+    - MOLECULE_DISTRO_VERSION: debian-10
+      MOLECULE_DISTRO_CMD: /bin/systemd
+    - MOLECULE_DISTRO_VERSION: ubuntu-16.04
+      MOLECULE_DISTRO_CMD: /sbin/init
+    - MOLECULE_DISTRO_VERSION: ubuntu-18.04
+      MOLECULE_DISTRO_CMD: /bin/systemd
+    - MOLECULE_DISTRO_VERSION: ubuntu-20.04
+      MOLECULE_DISTRO_CMD: /bin/systemd
+
+install:
+  # Install test dependencies.
+  - pip3 install -U jinja2 requests ansible ansible-lint yamllint molecule===3.0.8 docker
+
+before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  - cd ../
+  - mv $(basename $TRAVIS_REPO_SLUG) $(dirname $TRAVIS_REPO_SLUG).${ROLE_NAME}
+  - cd $(dirname $TRAVIS_REPO_SLUG).${ROLE_NAME}
+  # Configure Ansible
+  - cp .travis/ansible.cfg ~/.ansible.cfg
+  - mkdir -p ~/.ansible && cp .travis/hosts ~/.ansible
+  # Show Ansible version
+  - ansible --version
+
+script:
+  # Run tests.
+  - molecule test
+
+
+# blocklist
+branches:
+  except:
+    - experimental
+    - feature/documentation
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

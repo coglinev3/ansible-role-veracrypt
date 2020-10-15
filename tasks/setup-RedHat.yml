@@ -1,0 +1,10 @@
+---
+# file: roles/veracrypt/tasks/setup-RedHat.yml
+
+- name: "RedHat: Install veracrypt"
+  become: true
+  yum:
+    name: "{{ veracrypt_packages }}"
+    enablerepo: forensics
+    state: "{{ veracrypt_packages_state }}"
+  when: veracrypt_repo is defined and not veracrypt_repo.failed

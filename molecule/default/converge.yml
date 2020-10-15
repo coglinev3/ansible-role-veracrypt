@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include coglinev3.veracrypt"
+      include_role:
+        name: "coglinev3.veracrypt"

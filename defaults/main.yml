@@ -1,0 +1,7 @@
+---
+# file: roles/veracrypt/defaults/main.yml
+
+veracrypt_packages:
+  - veracrypt
+
+veracrypt_packages_state: present

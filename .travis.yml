@@ -3,13 +3,9 @@ dist: focal
 addons:
   apt:
     packages:
-      - libssl-dev
-      - libffi-dev
-      - python3
       - python3-pip
-      - python3-setuptools
-      - python3-software-properties
-      - python3-wheel
+      - python3-testresources
+      - libssl-dev
 
 language: minimal
 
@@ -36,8 +32,10 @@ env:
       MOLECULE_DISTRO_CMD: /bin/systemd
 
 install:
-  # Install test dependencies.
-  - pip3 install -U jinja2 requests ansible ansible-lint yamllint molecule===3.0.8 docker
+  # Upgrade setuptools
+  - python3 -m pip install --upgrade --user setuptools
+  # Install Ansible Molecule with docker driver
+  - python3 -m pip install --upgrade --user "molecule[ansible,docker]" ansible-lint yamllint
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
@@ -49,11 +47,11 @@ before_script:
   - mkdir -p ~/.ansible && cp .travis/hosts ~/.ansible
   # Show Ansible version
   - ansible --version
+  - molecule --version
 
 script:
   # Run tests.
   - molecule test
-
 
 # blocklist
 branches:

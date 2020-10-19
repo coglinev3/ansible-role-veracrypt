@@ -24,6 +24,7 @@ lint: |
   set -e
   yamllint .
   ansible-lint tests/test.yml
+  flake8
 scenario:
   name: default
   test_sequence:

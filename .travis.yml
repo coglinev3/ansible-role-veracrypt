@@ -34,8 +34,8 @@ env:
 install:
   # Upgrade setuptools
   - python3 -m pip install --upgrade --user setuptools
-  # Install Ansible Molecule with docker driver
-  - python3 -m pip install --upgrade --user "molecule[ansible,docker]" ansible-lint yamllint
+  # Install Ansible Molecule with docker driver and lint tools
+  - python3 -m pip install --upgrade --user "molecule[ansible,docker,lint]"
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
@@ -45,7 +45,7 @@ before_script:
   # Configure Ansible
   - cp .travis/ansible.cfg ~/.ansible.cfg
   - mkdir -p ~/.ansible && cp .travis/hosts ~/.ansible
-  # Show Ansible version
+  # Show Ansible and Molecule versions
   - ansible --version
   - molecule --version
 

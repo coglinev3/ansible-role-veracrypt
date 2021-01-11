@@ -20,6 +20,8 @@ env:
   matrix:
     - MOLECULE_DISTRO_VERSION: centos-7
     - MOLECULE_DISTRO_VERSION: centos-8
+    - MOLECULE_DISTRO_VERSION: fedora-32
+    - MOLECULE_DISTRO_VERSION: fedora-33
     - MOLECULE_DISTRO_VERSION: debian-9
       MOLECULE_DISTRO_CMD: /bin/systemd
     - MOLECULE_DISTRO_VERSION: debian-10

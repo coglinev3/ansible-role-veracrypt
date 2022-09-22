@@ -1,6 +1,6 @@
 # Ansible Role: veracrypt
 
-[![Build Status](https://travis-ci.com/coglinev3/ansible-role-veracrypt.svg?branch=master)](https://travis-ci.com/coglinev3/ansible-role-veracrypt) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/coglinev3/ansible-role-veracrypt) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://raw.githubusercontent.com/coglinev3/ansible-role-veracrypt/master/LICENSE)
+[![Build](https://github.com/coglinev3/ansible-role-veracrypt/actions/workflows/build.yml/badge.svg)](https://github.com/coglinev3/ansible-role-veracrypt/actions/workflows/build.yml) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/coglinev3/ansible-role-veracrypt) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://raw.githubusercontent.com/coglinev3/ansible-role-veracrypt/master/LICENSE)
 
 This Ansible role installs [VeraCrypt](https://www.veracrypt.fr/ "VeraCrypt"), a free open source disk encryption software.
 The following Linux distributions are supported:
@@ -9,8 +9,6 @@ The following Linux distributions are supported:
 * Debian 10 (Buster),
 * Enterprise Linux 7, 
 * Enterprise Linux 8, 
-* Fedora 33,
-* Fedora 34,
 * Ubuntu 16.04 LTS (Xenial Xerus),
 * Ubuntu 18.04 LTS (Bionic Beaver),
 * Ubuntu 20.04 LTS (Focal Fossa),

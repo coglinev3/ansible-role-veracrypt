@@ -1,6 +1,7 @@
 ---
 # file: roles/veracrypt/tests/test.yml
 
-- hosts: local
+- name: Execute role coglinev3.veracrypt
+  hosts: local
   roles:
     - { role: coglinev3.veracrypt }

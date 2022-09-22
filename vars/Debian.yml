@@ -2,6 +2,10 @@
 # file: roles/veracrypt/vars/Debian.yml
 
 debian_ubuntu_matrix:
+  bookworm:
+    ubuntu_distribution_release: jammy
+    ubuntu_distribution_version: 22.04
+    ubuntu_distribution_major_version: 22
   bullseye:
     ubuntu_distribution_release: focal
     ubuntu_distribution_version: 20.04
@@ -14,6 +18,22 @@ debian_ubuntu_matrix:
     ubuntu_distribution_release: xenial
     ubuntu_distribution_version: 16.04
     ubuntu_distribution_major_version: 16
+  vanessa:
+    ubuntu_distribution_release: jammy
+    ubuntu_distribution_version: 22.04
+    ubuntu_distribution_major_version: 22
+  una:
+    ubuntu_distribution_release: focal
+    ubuntu_distribution_version: 20.04
+    ubuntu_distribution_major_version: 20
+  uma:
+    ubuntu_distribution_release: focal
+    ubuntu_distribution_version: 20.04
+    ubuntu_distribution_major_version: 20
+  ulyssa:
+    ubuntu_distribution_release: focal
+    ubuntu_distribution_version: 20.04
+    ubuntu_distribution_major_version: 20
   ulyana:
     ubuntu_distribution_release: focal
     ubuntu_distribution_version: 20.04

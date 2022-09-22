@@ -16,3 +16,6 @@
           - "'1.' in veracrypt_version.stdout"
         fail_msg: "VeraCrypt is not installed correctly"
         success_msg: "{{ veracrypt_version.stdout }} installed correctly"
+    - name: Show OS
+      debug:
+        msg: "{{ ansible_distribution }} - {{ ansible_distribution_version }}"

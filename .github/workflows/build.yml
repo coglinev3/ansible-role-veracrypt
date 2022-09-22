@@ -1,0 +1,129 @@
+---
+name: Build
+
+# Controls when the workflow will run
+'on':
+  push:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: 'coglinev3.veracrypt'
+
+jobs:
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: 'coglinev3.veracrypt'
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint
+
+      - name: Lint code.
+        run: yamllint .
+
+  test:
+    name: Molecule
+    runs-on: ubuntu-latest
+    env:
+      MOLECULE_DISTRO: 'coglinev3/ansible'
+    strategy:
+      matrix:
+        include:
+#          - distro_version: 'alpine-3.14'
+#            distro_cmd: /sbin/init
+#          - distro_version: 'alpine-3.15'
+#            distro_cmd: /sbin/init
+#          - distro_version: 'alpine-3.16'
+#            distro_cmd: /sbin/init
+          - distro_version: 'centos-7'
+          - distro_version: 'almalinux-8'
+          - distro_version: 'debian-9'
+            distro_cmd: /bin/systemd
+          - distro_version: 'debian-10'
+            distro_cmd: /bin/systemd
+#          - distro_version: 'debian-11'
+#            distro_cmd: /bin/systemd
+#          - distro_version: 'fedora-33'
+#          - distro_version: 'fedora-34'
+#          - distro_version: 'fedora-35'
+#          - distro_version: 'fedora-36'
+          - distro_version: 'ubuntu-16.04'
+            distro_cmd: /bin/systemd
+          - distro_version: 'ubuntu-18.04'
+            distro_cmd: /bin/systemd
+          - distro_version: 'ubuntu-20.04'
+            distro_cmd: /bin/systemd
+#          - distro_version: 'ubuntu-22.04'
+#            distro_cmd: /bin/systemd
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: 'coglinev3.veracrypt'
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install python3-pip python3-testresources libssl-dev
+
+      - name: Upgrade Python wheel
+        run: python3 -m pip install --upgrade --user wheel
+
+      - name: Upgrade Python setuptools
+        run: python3 -m pip install --upgrade --user setuptools
+
+      - name: Install Ansible Molecule with docker driver and lint tools
+        run: python3 -m pip install --upgrade --user ansible ansible-lint "molecule[docker,lint]"
+
+      - name: Configure Ansible
+        run: |
+          mkdir -p ~/.ansible
+          cp .github/ansible.cfg ~/.ansible.cfg
+          cp .github/hosts ~/.ansible/hosts
+
+      - name: Show Ansible and Molecule version
+        run: |
+          ansible --version
+          molecule --version
+
+      - name: Run tests.
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO_VERSION: ${{ matrix.distro_version }}
+          MOLECULE_DISTRO_CMD: ${{ matrix.distro_cmd }}
+
+  # Push Ansible role to Ansible Galaxy
+  release:
+    name: Release
+    needs:
+      - lint
+      - test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: galaxy
+        uses: robertdebock/galaxy-action@1.2.0
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}

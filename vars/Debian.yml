@@ -14,10 +14,13 @@ debian_ubuntu_matrix:
     ubuntu_distribution_release: xenial
     ubuntu_distribution_version: 16.04
     ubuntu_distribution_major_version: 16
-  ulyana:
+  ulyana: &mint-20
     ubuntu_distribution_release: focal
     ubuntu_distribution_version: 20.04
     ubuntu_distribution_major_version: 20
+  una: *mint-20
+  uma: *mint-20
+  ulyssa: *mint-20
   tricia:
     ubuntu_distribution_release: bionic
     ubuntu_distribution_version: 18.04

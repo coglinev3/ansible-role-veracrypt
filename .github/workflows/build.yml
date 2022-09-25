@@ -66,6 +66,8 @@ jobs:
             distro_cmd: /bin/systemd
           - distro_version: 'ubuntu-20.04'
             distro_cmd: /bin/systemd
+          - distro_version: 'ubuntu-22.04'
+            distro_cmd: /bin/systemd
 #          - distro_version: 'ubuntu-22.04'
 #            distro_cmd: /bin/systemd
 

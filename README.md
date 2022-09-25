@@ -12,8 +12,9 @@ The following Linux distributions are supported:
 * Ubuntu 16.04 LTS (Xenial Xerus),
 * Ubuntu 18.04 LTS (Bionic Beaver),
 * Ubuntu 20.04 LTS (Focal Fossa),
+* Ubuntu 22.04 LTS (Jammy Jellyfish).
 
-This Role was tested with [Travis CI](https://travis-ci.com/coglinev3/ansible-role-veracrypt "Travis CI") using [Ansible Molecule](https://molecule.readthedocs.io/en/latest/# "Ansible Molecule Documentation") and  with a [multi virtual machine veracrypt environment](https://ansible-development.readthedocs.io "Environment for developing and testing Ansible roles").
+This Role was tested with [GitHub Actions](https://github.com/features/actions "GitHub Actions") using [Ansible Molecule](https://molecule.readthedocs.io/en/latest/# "Ansible Molecule Documentation") and with a [multi virtual machine veracrypt environment](https://ansible-development.readthedocs.io "Environment for developing and testing Ansible roles").
 
 ## Requirements
 
@@ -61,4 +62,4 @@ BSD
 
 ## Author Information
 
-Copyright &copy; 2020 Cogline.v3.
+Copyright &copy; 2022 Cogline.v3.

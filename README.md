@@ -7,6 +7,7 @@ The following Linux distributions are supported:
 
 * Debian 9 (Stretch),
 * Debian 10 (Buster),
+* Debian 11 (Buster),
 * Enterprise Linux 7, 
 * Enterprise Linux 8, 
 * Ubuntu 16.04 LTS (Xenial Xerus),

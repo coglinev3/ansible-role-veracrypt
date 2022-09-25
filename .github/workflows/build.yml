@@ -54,6 +54,8 @@ jobs:
             distro_cmd: /bin/systemd
           - distro_version: 'debian-10'
             distro_cmd: /bin/systemd
+          - distro_version: 'debian-11'
+            distro_cmd: /bin/systemd
 #          - distro_version: 'debian-11'
 #            distro_cmd: /bin/systemd
 #          - distro_version: 'fedora-33'

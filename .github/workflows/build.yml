@@ -59,12 +59,9 @@ jobs:
             distro_cmd: /bin/systemd
           - distro_version: 'debian-11'
             distro_cmd: /bin/systemd
-#          - distro_version: 'debian-11'
-#            distro_cmd: /bin/systemd
-#          - distro_version: 'fedora-33'
-#          - distro_version: 'fedora-34'
-#          - distro_version: 'fedora-35'
-#          - distro_version: 'fedora-36'
+          - distro_version: 'fedora-35'
+          - distro_version: 'fedora-36'
+          - distro_version: 'fedora-37'
           - distro_version: 'ubuntu-16.04'
             distro_cmd: /bin/systemd
           - distro_version: 'ubuntu-18.04'

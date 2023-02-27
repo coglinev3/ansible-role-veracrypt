@@ -1,0 +1,33 @@
+---
+# file: roles/ansible-common/tasks/setup-Alpine.yml
+
+- name: "Alpine: Add edge main repository."
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/apk/repositories
+    regexp: '^https://dl-cdn.alpinelinux.org/alpine/edge/main'
+    line: 'https://dl-cdn.alpinelinux.org/alpine/edge/main'
+    state: present
+
+- name: "Alpine: Add edge community repository."
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/apk/repositories
+    regexp: '^https://dl-cdn.alpinelinux.org/alpine/edge/community'
+    line: 'https://dl-cdn.alpinelinux.org/alpine/edge/community'
+    state: present
+
+- name: "Alpine: Add edge testing repository."
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/apk/repositories
+    regexp: '^https://dl-cdn.alpinelinux.org/alpine/edge/testing'
+    line: 'https://dl-cdn.alpinelinux.org/alpine/edge/testing'
+    state: present
+
+- name: "Alpine: Install veracrypt"
+  become: true
+  community.general.apk:
+    name: "{{ veracrypt_packages }}"
+    state: "{{ veracrypt_packages_state }}"
+    update_cache: "yes"

@@ -7,16 +7,21 @@ galaxy_info:
   namespace: coglinev3
   description: VeraCrypt, free encryption software based on TrueCrypt.
   license: BSD-3-Clause
-  min_ansible_version: 2.9
+  min_ansible_version: "2.14"
   platforms:
+    - name: Alpine
+      versions:
+        - any
     - name: EL
       versions:
-        - 8
-        - 7
-#    - name: Fedora
-#      versions:
-#        - 33
-#        - 34
+        - "9"
+        - "8"
+        - "7"
+    - name: Fedora
+      versions:
+        - "35"
+        - "36"
+        - "37"
     - name: Ubuntu
       versions:
         - xenial

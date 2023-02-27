@@ -3,7 +3,7 @@
 
 - name: "RedHat: Install veracrypt"
   become: true
-  yum:
+  ansible.builtin.yum:
     name: "{{ veracrypt_packages }}"
     enablerepo: forensics
     state: "{{ veracrypt_packages_state }}"

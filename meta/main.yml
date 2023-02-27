@@ -9,6 +9,9 @@ galaxy_info:
   license: BSD-3-Clause
   min_ansible_version: "2.14"
   platforms:
+    - name: Alpine
+      versions:
+        - any
     - name: EL
       versions:
         - "9"

@@ -5,6 +5,8 @@
 This Ansible role installs [VeraCrypt](https://www.veracrypt.fr/ "VeraCrypt"), a free open source disk encryption software.
 The following Linux distributions are supported:
 
+* Alpine Linux 3.16,
+* Alpine Linux 3.17,
 * Debian 9 (Stretch),
 * Debian 10 (Buster),
 * Debian 11 (Buster),

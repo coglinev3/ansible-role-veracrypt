@@ -29,10 +29,13 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install yamllint
+        run: python3 -m pip install --upgrade --user pytest ansible yamllint 'ansible-lint==6.12.2'
 
-      - name: Lint code.
+      - name: Lint code with yamllint.
         run: yamllint .
+
+      - name: Lint code with ansible-lint.
+        run: ansible-lint
 
   test:
     name: Molecule
@@ -96,7 +99,7 @@ jobs:
         run: python3 -m pip install --upgrade --user setuptools
 
       - name: Install Ansible Molecule with docker driver and lint tools
-        run: python3 -m pip install --upgrade --user ansible ansible-lint "molecule[docker,lint]"
+        run: python3 -m pip install --upgrade --user pytest ansible "ansible-lint==6.12.2" "molecule[docker,lint]"
 
       - name: Configure Ansible
         run: |

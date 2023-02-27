@@ -3,7 +3,7 @@
 
 - name: "Debian: Install veracrypt"
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "{{ veracrypt_packages }}"
     state: "{{ veracrypt_packages_state }}"
     install_recommends: "no"

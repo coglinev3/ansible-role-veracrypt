@@ -3,7 +3,7 @@
 
 - name: "RedHat: Add CERT Forensics Tools repository"
   become: true
-  yum:
+  ansible.builtin.yum:
     name: "https://forensics.cert.org/cert-forensics-tools-release-el{{ ansible_distribution_major_version }}.rpm"
     state: present
     disable_gpg_check: true

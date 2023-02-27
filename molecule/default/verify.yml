@@ -5,17 +5,15 @@
   hosts: all
   tasks:
     - name: "Log in as user ansible and execute veracrypt --version"
-      shell: veracrypt --version 2> /dev/null
+      ansible.builtin.command: veracrypt --version 2> /dev/null
       changed_when: false
-      args:
-        warn: false # set warn=false to prevent warning
       register: veracrypt_version
     - name: Check VeraCrypt version
-      assert:
+      ansible.builtin.assert:
         that:
           - "'1.' in veracrypt_version.stdout"
         fail_msg: "VeraCrypt is not installed correctly"
         success_msg: "{{ veracrypt_version.stdout }} installed correctly"
     - name: Show OS
-      debug:
+      ansible.builtin.debug:
         msg: "{{ ansible_distribution }} - {{ ansible_distribution_version }}"

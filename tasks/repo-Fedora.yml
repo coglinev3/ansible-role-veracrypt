@@ -3,7 +3,7 @@
 
 - name: "Fedora: Add RPM Sphere repository"
   become: true
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: rpmsphere
     description: RPM Sphere - Basearch
     baseurl: https://github.com/rpmsphere/$basearch/raw/master/

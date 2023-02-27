@@ -10,6 +10,7 @@ The following Linux distributions are supported:
 * Debian 11 (Buster),
 * Enterprise Linux 7, 
 * Enterprise Linux 8, 
+* Enterprise Linux 9, 
 * Fedora 35,
 * Fedora 36,
 * Fedora 37,

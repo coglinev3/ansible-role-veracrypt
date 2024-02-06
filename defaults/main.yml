@@ -1,6 +1,8 @@
 ---
 # file: roles/veracrypt/defaults/main.yml
 
+veracrypt_dependencies: []
+
 veracrypt_packages:
   - veracrypt
 

@@ -1,10 +1,19 @@
 ---
 # file: roles/veracrypt/tasks/setup-Debian.yml
 
-- name: "Debian: Install veracrypt"
-  become: true
-  ansible.builtin.apt:
-    name: "{{ veracrypt_packages }}"
-    state: "{{ veracrypt_packages_state }}"
-    install_recommends: "no"
-  when: ppa_unit193 is defined and not ppa_unit193.failed
+- name: "Debian: Install"
+  when: veracrypt_repo is defined and not veracrypt_repo.failed
+  block:
+    - name: "Debian: Install requirements"
+      become: true
+      ansible.builtin.apt:
+        name: "{{ veracrypt_dependencies }}"
+        state: present
+        update_cache: true
+    
+    - name: "Debian: Install veracrypt"
+      become: true
+      ansible.builtin.apt:
+        name: "{{ veracrypt_packages }}"
+        state: "{{ veracrypt_packages_state }}"
+        install_recommends: false

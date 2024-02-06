@@ -1,21 +1,17 @@
 ---
 # file: roles/veracrypt/tasks/repo-Debian.yml
 
-- name: "Debian/Mint: Set codename for repository"
-  ansible.builtin.set_fact:
-    vc_repo_codename: "{{ debian_ubuntu_matrix[ansible_distribution_release]['ubuntu_distribution_release'] }}"
-  when: not ansible_distribution == "Ubuntu"
+- name: "Debian: Add an Apt signing key for Alexander Pozdnyakov"
+  become: true
+  ansible.builtin.apt_key:
+    url: https://notesalexp.org/debian/alexp_key.asc
+    state: present
 
-- name: "Ubuntu: Set codename for repository"
-  ansible.builtin.set_fact:
-    vc_repo_codename: "{{ ansible_distribution_release }}"
-  when: ansible_distribution == "Ubuntu"
-
-- name: "Debian: Add VeraCrypt repository from PPA Unit 193"
+- name: "Debian: Add VeraCrypt repository"
   become: true
   ansible.builtin.apt_repository:
-    repo: "ppa:unit193/encryption"
-    codename: "{{ vc_repo_codename }}"
+    repo: "deb https://notesalexp.org/debian/{{ ansible_distribution_release }}/ {{ ansible_distribution_release }} main"
+    update_cache: true
     state: present
     mode: "0644"
-  register: ppa_unit193
+  register: veracrypt_repo

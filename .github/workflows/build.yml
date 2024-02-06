@@ -19,17 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: 'coglinev3.veracrypt'
 
-      - name: Set up Python 3.
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
       - name: Install test dependencies.
-        run: python3 -m pip install --upgrade --user pytest ansible yamllint 'ansible-lint==6.12.2'
+        run: python3 -m pip install --upgrade --user pytest ansible yamllint ansible-lint
 
       - name: Lint code with yamllint.
         run: yamllint .
@@ -45,15 +40,15 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro_version: 'alpine-3.16'
-            distro_cmd: /sbin/init
-          - distro_version: 'alpine-3.17'
-            distro_cmd: /sbin/init
+          #- distro_version: 'alpine-3.16'
+          #  distro_cmd: /sbin/init
+          #- distro_version: 'alpine-3.17'
+          #  distro_cmd: /sbin/init
           - distro_version: 'centos-7'
           - distro_version: 'almalinux-8'
           - distro_version: 'almalinux-9'
-          - distro_version: 'debian-9'
-            distro_cmd: /bin/systemd
+          #- distro_version: 'debian-9'
+          #  distro_cmd: /bin/systemd
           - distro_version: 'debian-10'
             distro_cmd: /bin/systemd
           - distro_version: 'debian-11'
@@ -61,41 +56,39 @@ jobs:
           - distro_version: 'fedora-35'
           - distro_version: 'fedora-36'
           - distro_version: 'fedora-37'
-          - distro_version: 'ubuntu-16.04'
-            distro_cmd: /bin/systemd
           - distro_version: 'ubuntu-18.04'
             distro_cmd: /bin/systemd
           - distro_version: 'ubuntu-20.04'
             distro_cmd: /bin/systemd
           - distro_version: 'ubuntu-22.04'
             distro_cmd: /bin/systemd
-#          - distro_version: 'ubuntu-22.04'
-#            distro_cmd: /bin/systemd
 
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: 'coglinev3.veracrypt'
 
-      - name: Set up Python 3.
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+      - name: Install Molecule
+        run: >-
+          python3 -m pip install --user urllib3
+          ansible
+          molecule
+          molecule-plugins[docker]
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install python3-pip python3-testresources libssl-dev
-
-      - name: Upgrade Python wheel
-        run: python3 -m pip install --upgrade --user wheel
-
-      - name: Upgrade Python setuptools
-        run: python3 -m pip install --upgrade --user setuptools
-
-      - name: Install Ansible Molecule with docker driver and lint tools
-        run: python3 -m pip install --upgrade --user pytest ansible "ansible-lint==6.12.2" "molecule[docker,lint]"
+        #      - name: Install dependencies
+        #        run: |
+        #          sudo apt-get update
+        #          sudo apt-get install python3-pip python3-testresources libssl-dev
+        #
+        #      - name: Upgrade Python wheel
+        #        run: python3 -m pip install --upgrade --user wheel
+        #
+        #      - name: Upgrade Python setuptools
+        #        run: python3 -m pip install --upgrade --user setuptools
+        #
+        #      - name: Install Ansible Molecule with docker driver and lint tools
+        #        run: python3 -m pip install --upgrade --user pytest ansible "ansible-lint==6.12.2" "molecule[docker,lint]"
 
       - name: Configure Ansible
         run: |

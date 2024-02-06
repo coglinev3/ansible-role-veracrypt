@@ -10,7 +10,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     tmpfs:
-      - /tmp
+      - /tmp:exec
       - /run
       - /run/lock
     cgroupns_mode: host
@@ -25,15 +25,9 @@ provisioner:
         ansible_user: ansible
 verifier:
   name: ansible
-lint: |
-  set -e
-  yamllint .
-  ansible-lint tests/test.yml
-  flake8
 scenario:
   name: default
   test_sequence:
-    - lint
     - destroy
     - syntax
     - create

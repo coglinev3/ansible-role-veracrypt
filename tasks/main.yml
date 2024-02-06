@@ -12,7 +12,7 @@
       skip: true
   tags: vars
 
-- name: Setup/install tasks.
+- name: Install dependencies and repository
   ansible.builtin.include_tasks: "{{ item }}"
   with_first_found:
     - files:

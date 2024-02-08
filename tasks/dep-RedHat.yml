@@ -1,0 +1,9 @@
+---
+# file: roles/veracrypt/tasks/dep-RedHat.yml
+
+- name: "RedHat: Install dependencies"
+  become: true
+  ansible.builtin.yum:
+    name: "{{ veracrypt_dependencies }}"
+    state: present
+    update_cache: true

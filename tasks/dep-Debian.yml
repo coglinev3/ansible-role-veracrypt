@@ -1,0 +1,9 @@
+---
+# file: roles/veracrypt/tasks/dep-Debian.yml
+
+- name: "Debian: Install dependencies"
+  become: true
+  ansible.builtin.apt:
+    name: "{{ veracrypt_dependencies }}"
+    state: present
+    update_cache: true

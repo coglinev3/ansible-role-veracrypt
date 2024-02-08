@@ -1,19 +1,31 @@
 ---
 # file: roles/veracrypt/tasks/setup-RedHat.yml
 
-- name: "RedHat: Install"
-  when: veracrypt_repo is defined and not veracrypt_repo.failed
-  block:
-    - name: "RedHat: Install requirements"
-      become: true
-      ansible.builtin.yum:
-        name: "{{ veracrypt_dependencies }}"
-        state: present
-        update_cache: true
-    
-    - name: "RedHat: Install veracrypt"
-      become: true
-      ansible.builtin.yum:
-        name: "{{ veracrypt_packages }}"
-        enablerepo: forensics
-        state: "{{ veracrypt_packages_state }}"
+- name: "CentOS 7: Define package URL"
+  ansible.builtin.set_fact:
+    veracrypt_package: "https://launchpad.net/veracrypt/trunk/{{ veracrypt_package_version }}/+download/veracrypt-{{ veracrypt_package_version }}-CentOS-7-x86_64.rpm"
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version | int == 7
+
+- name: "RedHat: Define package URL"
+  ansible.builtin.set_fact:
+    veracrypt_package: "https://launchpad.net/veracrypt/trunk/{{ veracrypt_package_version }}/+download/veracrypt-{{ veracrypt_package_version }}-CentOS-8-x86_64.rpm"
+  when: (ansible_distribution != "CentOS") or
+    ((ansible_distribution == "CentOS") and (ansible_distribution_major_version | int > 7))
+
+- name: Show package URL
+  ansible.builtin.debug:
+    var: veracrypt_package
+
+- name: "RedHat: Install RPM GPG Key"
+  become: true
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://www.idrix.fr/VeraCrypt/VeraCrypt_PGP_public_key.asc
+
+- name: "RedHat: Install veracrypt"
+  become: true
+  ansible.builtin.yum:
+    name: "{{ veracrypt_package }}"
+    state: "{{ veracrypt_package_state }}"

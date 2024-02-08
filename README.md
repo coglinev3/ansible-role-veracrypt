@@ -14,6 +14,7 @@ The following Linux distributions are supported:
 * Fedora 36,
 * Fedora 37,
 * Fedora 38,
+* Fedora 39,
 * Ubuntu 18.04 LTS (Bionic Beaver),
 * Ubuntu 20.04 LTS (Focal Fossa),
 * Ubuntu 22.04 LTS (Jammy Jellyfish).

@@ -12,15 +12,19 @@
       skip: true
   tags: vars
 
-- name: Install dependencies and repository
+- name: Install dependencies
   ansible.builtin.include_tasks: "{{ item }}"
   with_first_found:
     - files:
-        - "repo-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "repo-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-        - "repo-{{ ansible_distribution }}.yml"
-        - "repo-{{ ansible_os_family }}.yml"
+        - "dep-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "dep-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "dep-{{ ansible_distribution }}.yml"
+        - "dep-{{ ansible_os_family }}.yml"
       skip: true
+
+- name: Detect latest VeraCrypt version
+  ansible.builtin.include_tasks: get-version.yml
+  when: veracrypt_package_version == "latest"
 
 - name: OS specific setup.
   ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"

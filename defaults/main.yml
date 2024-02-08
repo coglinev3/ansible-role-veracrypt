@@ -3,7 +3,11 @@
 
 veracrypt_dependencies: []
 
-veracrypt_packages:
+veracrypt_package:
   - veracrypt
 
-veracrypt_packages_state: present
+veracrypt_package_version: latest
+# Install latest VeraCrypt version with TrueCrypt support
+#veracrypt_package_version: 1.25.9
+
+veracrypt_package_state: present

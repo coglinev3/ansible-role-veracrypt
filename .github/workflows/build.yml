@@ -47,8 +47,6 @@ jobs:
           - distro_version: 'centos-7'
           - distro_version: 'almalinux-8'
           - distro_version: 'almalinux-9'
-          #- distro_version: 'debian-9'
-          #  distro_cmd: /bin/systemd
           - distro_version: 'debian-10'
             distro_cmd: /bin/systemd
           - distro_version: 'debian-11'
@@ -56,6 +54,7 @@ jobs:
           - distro_version: 'fedora-35'
           - distro_version: 'fedora-36'
           - distro_version: 'fedora-37'
+          - distro_version: 'fedora-38'
           - distro_version: 'ubuntu-18.04'
             distro_cmd: /bin/systemd
           - distro_version: 'ubuntu-20.04'

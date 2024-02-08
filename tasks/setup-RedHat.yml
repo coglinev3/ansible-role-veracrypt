@@ -4,7 +4,7 @@
 - name: "RedHat: Install"
   when: veracrypt_repo is defined and not veracrypt_repo.failed
   block:
-    - name: "Debian: Install requirements"
+    - name: "RedHat: Install requirements"
       become: true
       ansible.builtin.yum:
         name: "{{ veracrypt_dependencies }}"

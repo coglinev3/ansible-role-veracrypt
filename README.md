@@ -5,9 +5,6 @@
 This Ansible role installs [VeraCrypt](https://www.veracrypt.fr/ "VeraCrypt"), a free open source disk encryption software.
 The following Linux distributions are supported:
 
-* Alpine Linux 3.16,
-* Alpine Linux 3.17,
-* Debian 9 (Stretch),
 * Debian 10 (Buster),
 * Debian 11 (Buster),
 * Enterprise Linux 7, 
@@ -16,11 +13,17 @@ The following Linux distributions are supported:
 * Fedora 35,
 * Fedora 36,
 * Fedora 37,
+* Fedora 38,
 * Ubuntu 18.04 LTS (Bionic Beaver),
 * Ubuntu 20.04 LTS (Focal Fossa),
 * Ubuntu 22.04 LTS (Jammy Jellyfish).
 
-This Role was tested with [GitHub Actions](https://github.com/features/actions "GitHub Actions") using [Ansible Molecule](https://molecule.readthedocs.io/en/latest/# "Ansible Molecule Documentation") and with a [multi virtual machine vagrant environment](https://ansible-development.readthedocs.io "Environment for developing and testing Ansible roles").
+This Role was tested with [GitHub Actions](https://github.com/features/actions
+"GitHub Actions") using [Ansible
+Molecule](https://molecule.readthedocs.io/en/latest/# "Ansible Molecule
+Documentation") and with a [multi virtual machine vagrant
+environment](https://ansible-development.readthedocs.io "Environment for
+developing and testing Ansible roles").
 
 ## Requirements
 

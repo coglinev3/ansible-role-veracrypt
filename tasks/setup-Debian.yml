@@ -1,6 +1,18 @@
 ---
 # file: roles/veracrypt/tasks/setup-Debian.yml
 
+- name: Detect Debian architecture
+  when: veracrypt_architecture is not defined
+  block:
+    - name: Get Debian architecture
+      ansible.builtin.command: dpkg --print-architecture
+      register: veracrypt_debian_architecture
+      changed_when: false
+    
+    - name: Set Debian architecture
+      ansible.builtin.set_fact:
+        veracrypt_architecture: "{{ veracrypt_debian_architecture.stdout }}"
+
 - name: "Debian: Install dependencies"
   become: true
   ansible.builtin.apt:
@@ -10,13 +22,27 @@
 
 - name: "Debian: Define package URL"
   ansible.builtin.set_fact:
-    veracrypt_package: "https://launchpad.net/veracrypt/trunk/{{ veracrypt_package_version }}/+download/veracrypt-{{ veracrypt_package_version }}-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}-amd64.deb"
+    veracrypt_package: "https://launchpad.net/veracrypt/trunk/\
+      {{ veracrypt_package_version }}\
+      /+download/\
+      {{ veracrypt_package_name }}\
+      -{{ veracrypt_package_version }}\
+      -{{ ansible_distribution }}\
+      -{{ ansible_distribution_major_version }}\
+      -{{ veracrypt_architecture }}.deb"
   when:
     - ansible_distribution == "Debian"
 
 - name: "Ubuntu: Define package URL"
   ansible.builtin.set_fact:
-    veracrypt_package: "https://launchpad.net/veracrypt/trunk/{{ veracrypt_package_version }}/+download/veracrypt-{{ veracrypt_package_version }}-{{ ansible_distribution }}-{{ ansible_distribution_version }}-amd64.deb"
+    veracrypt_package: "https://launchpad.net/veracrypt/trunk/\
+    {{ veracrypt_package_version }}\
+    /+download/\
+    {{ veracrypt_package_name }}\
+    -{{ veracrypt_package_version }}\
+    -{{ ansible_distribution }}\
+    -{{ ansible_distribution_version }}\
+    -{{ veracrypt_architecture }}.deb"
   when:
     - ansible_distribution == "Ubuntu"
 

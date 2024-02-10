@@ -1,25 +1,17 @@
 ---
 # file: roles/veracrypt/tasks/get_version.yml
 
-- name: Check latest VeraCrypt release on GitHub
+- name: Check GitHub API for latest VeraCrypt release
   ansible.builtin.uri:
     url: https://api.github.com/repos/veracrypt/VeraCrypt/releases/latest
     return_content: true
   register: veracrypt_version
+  failed_when: veracrypt_version is failed or veracrypt_version.json.tag_name is not defined
 
-- name: Define package URL with latest version
+- name: Set VeraCrypt version
   ansible.builtin.set_fact:
     veracrypt_package_version: "{{ veracrypt_version.json.tag_name.split('_')[1] }}"
 
 - name: Show VeraCrypt version
   ansible.builtin.debug:
     var: veracrypt_package_version
-
-#- name: Get latest VeraCrypt version
-#  ansible.builtin.shell:
-#    cmd: curl -s https://api.github.com/repos/veracrypt/VeraCrypt/releases/latest | grep tag_name | cut -d \" -f 4 | cut -d "_" -f2
-#  register: veracrypt_version
-#
-#- name: Define package URL with latest version
-#  ansible.builtin.set_fact:
-#    veracrypt_package_version: "{{ veracrypt_version.stdout }}"

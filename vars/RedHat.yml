@@ -2,4 +2,4 @@
 # file: roles/veracrypt/vars/RedHat.yml
 
 veracrypt_dependencies:
-  - fuse-libs.x86_64
+  - fuse-libs

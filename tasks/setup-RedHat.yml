@@ -1,16 +1,33 @@
 ---
 # file: roles/veracrypt/tasks/setup-RedHat.yml
 
+- name: Set RedHat architecture
+  ansible.builtin.set_fact:
+    veracrypt_architecture: "{{ ansible_architecture }}"
+  when: veracrypt_architecture is not defined
+    
 - name: "CentOS 7: Define package URL"
   ansible.builtin.set_fact:
-    veracrypt_package: "https://launchpad.net/veracrypt/trunk/{{ veracrypt_package_version }}/+download/veracrypt-{{ veracrypt_package_version }}-CentOS-7-x86_64.rpm"
+    veracrypt_package: "https://launchpad.net/veracrypt/trunk/\
+      {{ veracrypt_package_version }}\
+      /+download/\
+      {{ veracrypt_package_name }}\
+      -{{ veracrypt_package_version }}\
+      -CentOS-7\
+      -{{ veracrypt_architecture }}.rpm"
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version | int == 7
 
 - name: "RedHat: Define package URL"
   ansible.builtin.set_fact:
-    veracrypt_package: "https://launchpad.net/veracrypt/trunk/{{ veracrypt_package_version }}/+download/veracrypt-{{ veracrypt_package_version }}-CentOS-8-x86_64.rpm"
+    veracrypt_package: "https://launchpad.net/veracrypt/trunk/\
+      {{ veracrypt_package_version }}\
+      /+download/\
+      {{ veracrypt_package_name }}\
+      -{{ veracrypt_package_version }}\
+      -CentOS-8\
+      -{{ veracrypt_architecture }}.rpm"
   when: (ansible_distribution != "CentOS") or
     ((ansible_distribution == "CentOS") and (ansible_distribution_major_version | int > 7))
 

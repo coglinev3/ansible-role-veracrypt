@@ -1,13 +1,18 @@
 ---
 # file: roles/veracrypt/defaults/main.yml
 
+# Define dependencies
 veracrypt_dependencies: []
 
-veracrypt_package:
-  - veracrypt
-
+# Install latest VeraCrypt version
 veracrypt_package_version: latest
-# Install latest VeraCrypt version with TrueCrypt support
+
+# You can also install a specific VeraCrypt version, for example
+# 1.25.9, the latest version with TrueCrypt support
 #veracrypt_package_version: 1.25.9
 
+# default package states: present | latest | absent
 veracrypt_package_state: present
+
+# Install GUI or console only version: true | false
+veracrypt_package_console_only: false

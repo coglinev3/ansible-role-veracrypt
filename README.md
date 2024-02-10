@@ -2,7 +2,12 @@
 
 [![Build](https://github.com/coglinev3/ansible-role-veracrypt/actions/workflows/build.yml/badge.svg)](https://github.com/coglinev3/ansible-role-veracrypt/actions/workflows/build.yml) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/coglinev3/ansible-role-veracrypt) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://raw.githubusercontent.com/coglinev3/ansible-role-veracrypt/master/LICENSE)
 
-This Ansible role installs [VeraCrypt](https://www.veracrypt.fr/ "VeraCrypt"), a free open source disk encryption software.
+This Ansible role installs [VeraCrypt](https://www.veracrypt.fr/ "VeraCrypt"),
+a free open source disk encryption software.
+
+This version is a complete redesign of the role to install the original
+os specific package provided by the author [IDRIX](https://www.idrix.fr).
+
 The following Linux distributions are supported:
 
 * Debian 10 (Buster),
@@ -15,16 +20,13 @@ The following Linux distributions are supported:
 * Fedora 37,
 * Fedora 38,
 * Fedora 39,
-* Ubuntu 18.04 LTS (Bionic Beaver),
 * Ubuntu 20.04 LTS (Focal Fossa),
 * Ubuntu 22.04 LTS (Jammy Jellyfish).
 
 This Role was tested with [GitHub Actions](https://github.com/features/actions
 "GitHub Actions") using [Ansible
-Molecule](https://molecule.readthedocs.io/en/latest/# "Ansible Molecule
-Documentation") and with a [multi virtual machine vagrant
-environment](https://ansible-development.readthedocs.io "Environment for
-developing and testing Ansible roles").
+Molecule](https://ansible.readthedocs.io/projects/molecule/ "Ansible Molecule
+Home").
 
 ## Requirements
 
@@ -36,12 +38,19 @@ None
 Available variables are listed below, along with default values:
 
 ```yml
-# packages to be installed
-veracrypt_packages:
-  - veracrypt
+# Define dependencies
+veracrypt_dependencies: []
 
-# default packages state: (present) | latest | absent 
-veracrypt_packages_state: present
+# Install latest VeraCrypt version: latest | specific version e.g. 1.26.7
+# If you want to use existinig TrueCrypt containers, then you should use
+# version 1.25.9. This is the latest version with TrueCrypt support.
+veracrypt_package_version: latest
+
+# default package states: present | latest | absent
+veracrypt_package_state: present
+
+# Install GUI or console only version: true | false
+veracrypt_package_console_only: false
 ```
 
 ## Dependencies

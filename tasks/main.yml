@@ -26,5 +26,13 @@
   ansible.builtin.include_tasks: get-version.yml
   when: veracrypt_package_version == "latest"
 
+- name: "Set package name"
+  ansible.builtin.set_fact:
+    veracrypt_package_name: "{{ 'veracrypt-console' if veracrypt_package_console_only == true else 'veracrypt' }}"
+
+- name: "Show package name"
+  ansible.builtin.debug:
+    var: veracrypt_package_name
+
 - name: OS specific setup.
   ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"

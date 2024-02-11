@@ -104,7 +104,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - name: 'Release on galaxy'
-        uses: ansible-actions/ansible-galaxy-action@v1.2.0
+      - name: galaxy
+        uses: robertdebock/galaxy-action@1.2.0
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}

@@ -11,7 +11,8 @@ os specific package provided by the author [IDRIX](https://www.idrix.fr).
 The following Linux distributions are supported:
 
 * Debian 10 (Buster),
-* Debian 11 (Buster),
+* Debian 11 (Bullseye),
+* Debian 12 (Bookworm),
 * Enterprise Linux 7, 
 * Enterprise Linux 8, 
 * Enterprise Linux 9, 

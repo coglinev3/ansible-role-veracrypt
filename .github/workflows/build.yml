@@ -53,12 +53,12 @@ jobs:
           - distro_version: 'almalinux-9'
           - distro_version: 'debian-10'
           - distro_version: 'debian-11'
+          - distro_version: 'debian-12'
           - distro_version: 'fedora-35'
           - distro_version: 'fedora-36'
           - distro_version: 'fedora-37'
           - distro_version: 'fedora-38'
           - distro_version: 'fedora-39'
-          #- distro_version: 'ubuntu-18.04'
           - distro_version: 'ubuntu-20.04'
           - distro_version: 'ubuntu-22.04'
 

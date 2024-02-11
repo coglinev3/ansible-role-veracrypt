@@ -1,0 +1,8 @@
+---
+# file: roles/veracrypt/tasks/uninstall-RedHat.yml
+
+- name: "RedHat: Uninstall veracrypt"
+  become: true
+  ansible.builtin.yum:
+    name: "{{ veracrypt_package_name }}"
+    state: absent

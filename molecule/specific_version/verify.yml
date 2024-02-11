@@ -1,0 +1,19 @@
+---
+# file: roles/veracrypt/molecule/default/verify.yml
+
+- name: Verify
+  hosts: all
+  tasks:
+    - name: "Log in as user ansible and execute veracrypt --version"
+      ansible.builtin.command: veracrypt --version 2> /dev/null
+      changed_when: false
+      register: veracrypt_version
+    - name: Check VeraCrypt version
+      ansible.builtin.assert:
+        that:
+          - "'1.' in veracrypt_version.stdout"
+        fail_msg: "VeraCrypt is not installed correctly"
+        success_msg: "{{ veracrypt_version.stdout }} installed correctly"
+    - name: Show OS
+      ansible.builtin.debug:
+        msg: "{{ ansible_distribution }} - {{ ansible_distribution_version }}"

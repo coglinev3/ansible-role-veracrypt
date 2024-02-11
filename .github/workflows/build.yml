@@ -69,20 +69,6 @@ jobs:
           molecule
           molecule-plugins[docker]
 
-        #      - name: Install dependencies
-        #        run: |
-        #          sudo apt-get update
-        #          sudo apt-get install python3-pip python3-testresources libssl-dev
-        #
-        #      - name: Upgrade Python wheel
-        #        run: python3 -m pip install --upgrade --user wheel
-        #
-        #      - name: Upgrade Python setuptools
-        #        run: python3 -m pip install --upgrade --user setuptools
-        #
-        #      - name: Install Ansible Molecule with docker driver and lint tools
-        #        run: python3 -m pip install --upgrade --user pytest ansible "ansible-lint==6.12.2" "molecule[docker,lint]"
-
       - name: Configure Ansible
         run: |
           mkdir -p ~/.ansible
@@ -95,7 +81,7 @@ jobs:
           molecule --version
 
       - name: Run tests.
-        run: molecule test
+        run: molecule test --all
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'

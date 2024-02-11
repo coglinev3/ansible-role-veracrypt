@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: all
+  vars:
+    veracrypt_package_console_only: true
+  tasks:
+    - name: "Include coglinev3.veracrypt"
+      ansible.builtin.include_role:
+        name: "coglinev3.veracrypt"

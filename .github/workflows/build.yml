@@ -23,14 +23,20 @@ jobs:
         with:
           path: 'coglinev3.veracrypt'
 
-      - name: Install test dependencies.
-        run: python3 -m pip install --upgrade --user pytest ansible yamllint ansible-lint
+      - name: Run ansible-lint
+        uses: ansible-actions/ansible-lint-action@v1.0.2
+        with:
+          target: "./"
+          required_collections: 'community.general'
 
-      - name: Lint code with yamllint.
-        run: yamllint .
+      #- name: Install test dependencies.
+      #  run: python3 -m pip install --upgrade --user pytest ansible yamllint ansible-lint
 
-      - name: Lint code with ansible-lint.
-        run: ansible-lint
+      #- name: Lint code with yamllint.
+      #  run: yamllint .
+
+      #- name: Lint code with ansible-lint.
+      #  run: ansible-lint
 
   test:
     name: Molecule
@@ -98,7 +104,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - name: galaxy
-        uses: robertdebock/galaxy-action@1.2.0
+      - name: 'Release on galaxy'
+        uses: ansible-actions/ansible-galaxy-action@v1.2.0
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}

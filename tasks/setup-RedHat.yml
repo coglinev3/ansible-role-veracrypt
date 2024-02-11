@@ -31,10 +31,6 @@
   when: (ansible_distribution != "CentOS") or
     ((ansible_distribution == "CentOS") and (ansible_distribution_major_version | int > 7))
 
-- name: Show package URL
-  ansible.builtin.debug:
-    var: veracrypt_package
-
 - name: "RedHat: Install RPM GPG Key"
   become: true
   ansible.builtin.rpm_key:

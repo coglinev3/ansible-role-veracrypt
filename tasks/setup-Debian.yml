@@ -46,10 +46,6 @@
   when:
     - ansible_distribution == "Ubuntu"
 
-- name: Show package URL
-  ansible.builtin.debug:
-    var: veracrypt_package
-
 - name: "Debian: Install veracrypt"
   become: true
   ansible.builtin.apt:

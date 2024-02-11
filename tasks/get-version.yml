@@ -11,7 +11,3 @@
 - name: Set VeraCrypt version
   ansible.builtin.set_fact:
     veracrypt_package_version: "{{ veracrypt_version.json.tag_name.split('_')[1] }}"
-
-- name: Show VeraCrypt version
-  ansible.builtin.debug:
-    var: veracrypt_package_version

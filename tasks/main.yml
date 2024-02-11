@@ -33,10 +33,6 @@
   ansible.builtin.set_fact:
     veracrypt_package_name: "{{ 'veracrypt-console' if veracrypt_package_console_only == true else 'veracrypt' }}"
 
-- name: "Show package name"
-  ansible.builtin.debug:
-    var: veracrypt_package_name
-
 - name: OS specific setup.
   ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
   when: veracrypt_package_state != "absent"

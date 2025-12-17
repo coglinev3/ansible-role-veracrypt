@@ -4,17 +4,17 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: "Log in as user ansible and execute veracrypt --version"
-      ansible.builtin.command: veracrypt --version 2> /dev/null
-      changed_when: false
-      failed_when: false
-      register: veracrypt_version
-    - name: Check VeraCrypt version
-      ansible.builtin.assert:
-        that:
-          - "'No such file or directory' in veracrypt_version.msg"
-        fail_msg: "VeraCrypt is installed correctly"
-        success_msg: "veracrypt is not installed"
     - name: Show OS
       ansible.builtin.debug:
-        msg: "{{ ansible_distribution }} - {{ ansible_distribution_version }}"
+        msg: "{{ ansible_facts.distribution }} - {{ ansible_facts.distribution_version }}"
+
+    - name: Gather installed package facts
+      ansible.builtin.package_facts:
+        manager: auto
+
+    - name: Assert veracrypt is not installed
+      ansible.builtin.assert:
+        that:
+          - "'veracrypt' not in ansible_facts.packages"
+        fail_msg: "veracrypt is installed"
+        success_msg: "veracrypt is not installed"

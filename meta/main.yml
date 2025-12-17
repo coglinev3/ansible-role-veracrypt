@@ -23,6 +23,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - jammy
+        - noble
     - name: Debian
       versions:
         - bullseye

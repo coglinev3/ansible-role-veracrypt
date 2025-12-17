@@ -44,6 +44,7 @@ jobs:
           - distro_version: 'debian-12'
           - distro_version: 'debian-13'
           - distro_version: 'ubuntu-22.04'
+          - distro_version: 'ubuntu-24.04'
 
     steps:
       - name: Check out the codebase.

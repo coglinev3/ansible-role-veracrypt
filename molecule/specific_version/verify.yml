@@ -12,9 +12,9 @@
       ansible.builtin.package_facts:
         manager: auto
 
-    - name: Assert veracrypt is installed
+    - name: Assert veracrypt-console is installed
       ansible.builtin.assert:
         that:
-          - "'veracrypt' in ansible_facts.packages"
+          - "'veracrypt-console' in ansible_facts.packages"
         fail_msg: "veracrypt is not installed"
-        success_msg: "veracrypt {{ ansible_facts.packages['veracrypt'][0].version }} is installed"
+        success_msg: "veracrypt {{ ansible_facts.packages['veracrypt-console'][0].version }} is installed"

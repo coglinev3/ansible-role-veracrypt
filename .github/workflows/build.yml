@@ -74,6 +74,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO_VERSION: ${{ matrix.distro_version }}
           MOLECULE_DISTRO_CMD: ${{ matrix.distro_cmd }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # Push Ansible role to Ansible Galaxy
   release:

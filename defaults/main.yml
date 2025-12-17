@@ -17,3 +17,6 @@ veracrypt_package_state: present
 
 # Install GUI or console only version: true | false
 veracrypt_package_console_only: false
+
+# GitHub-Token
+github_token: "{{ lookup('env', 'GITHUB_TOKEN') | default('', true) }}"

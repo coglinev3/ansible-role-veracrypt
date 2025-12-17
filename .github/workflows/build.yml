@@ -42,6 +42,7 @@ jobs:
           - distro_version: 'almalinux-9'
           - distro_version: 'debian-11'
           - distro_version: 'debian-12'
+          - distro_version: 'debian-13'
           - distro_version: 'ubuntu-22.04'
 
     steps:

@@ -12,6 +12,7 @@ The following Linux distributions are supported:
 
 * Debian 11 (Bullseye),
 * Debian 12 (Bookworm),
+* Debian 13 (Trixie),
 * Enterprise Linux 9, 
 * Ubuntu 22.04 LTS (Jammy Jellyfish).
 

@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    veracrypt_package_version: 1.25.9
+    veracrypt_package_version: 1.26.20
     veracrypt_package_console_only: true
   tasks:
     - name: "Include coglinev3.veracrypt"

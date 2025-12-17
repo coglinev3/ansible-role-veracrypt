@@ -1,15 +1,16 @@
 ---
 # file: roles/veracrypt/tasks/setup-Debian.yml
 
-- name: Detect Debian architecture
+- name: "Debian: Detect package architecture"
   when: veracrypt_architecture is not defined
   block:
-    - name: Get Debian architecture
+    - name: "Debian: Get dpkg architecture"
       ansible.builtin.command: dpkg --print-architecture
       register: veracrypt_debian_architecture
       changed_when: false
-    
-    - name: Set Debian architecture
+      check_mode: false
+
+    - name: "Debian: Set dpkg architecture"
       ansible.builtin.set_fact:
         veracrypt_architecture: "{{ veracrypt_debian_architecture.stdout }}"
 
@@ -27,11 +28,11 @@
       /+download/\
       {{ veracrypt_package_name }}\
       -{{ veracrypt_package_version }}\
-      -{{ ansible_distribution }}\
-      -{{ ansible_distribution_major_version }}\
+      -{{ ansible_facts.distribution }}\
+      -{{ ansible_facts.distribution_major_version }}\
       -{{ veracrypt_architecture }}.deb"
   when:
-    - ansible_distribution == "Debian"
+    - ansible_facts.distribution == "Debian"
 
 - name: "Ubuntu: Define package URL"
   ansible.builtin.set_fact:
@@ -40,11 +41,11 @@
     /+download/\
     {{ veracrypt_package_name }}\
     -{{ veracrypt_package_version }}\
-    -{{ ansible_distribution }}\
-    -{{ ansible_distribution_version }}\
+    -{{ ansible_facts.distribution }}\
+    -{{ ansible_facts.distribution_version }}\
     -{{ veracrypt_architecture }}.deb"
   when:
-    - ansible_distribution == "Ubuntu"
+    - ansible_facts.distribution == "Ubuntu"
 
 - name: "Debian: Install veracrypt"
   become: true

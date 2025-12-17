@@ -1,0 +1,8 @@
+---
+# file: roles/veracrypt/tasks/uninstall.yml
+
+- name: "Uninstall veracrypt"
+  become: true
+  ansible.builtin.package:
+    name: "{{ veracrypt_package_name }}"
+    state: absent

@@ -3,3 +3,4 @@
 
 veracrypt_dependencies:
   - fuse-libs
+  - gpg

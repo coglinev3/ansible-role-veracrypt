@@ -2,3 +2,4 @@
 *~
 *.retry
 *.swp
+.ansible

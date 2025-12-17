@@ -1,8 +1,0 @@
----
-# file: roles/veracrypt/tasks/uninstall-Debian.yml
-
-- name: "Debian: Uninstall veracrypt"
-  become: true
-  ansible.builtin.apt:
-    name: "{{ veracrypt_package_name }}"
-    state: absent

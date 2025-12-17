@@ -1,0 +1,8 @@
+---
+# file: roles/veracrypt/tasks/dependencies.yml
+
+- name: "Install dependencies"
+  become: true
+  ansible.builtin.package:
+    name: "{{ veracrypt_dependencies }}"
+    state: present

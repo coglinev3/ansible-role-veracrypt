@@ -9,7 +9,8 @@ veracrypt_package_version: latest
 
 # You can also install a specific VeraCrypt version, for example
 # 1.25.9, the latest version with TrueCrypt support
-#veracrypt_package_version: 1.25.9
+#
+# veracrypt_package_version: 1.25.9
 
 # default package states: present | latest | absent
 veracrypt_package_state: present

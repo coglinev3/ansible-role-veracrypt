@@ -10,18 +10,9 @@ os specific package provided by the author [IDRIX](https://www.idrix.fr).
 
 The following Linux distributions are supported:
 
-* Debian 10 (Buster),
 * Debian 11 (Bullseye),
 * Debian 12 (Bookworm),
-* Enterprise Linux 7, 
-* Enterprise Linux 8, 
 * Enterprise Linux 9, 
-* Fedora 35,
-* Fedora 36,
-* Fedora 37,
-* Fedora 38,
-* Fedora 39,
-* Ubuntu 20.04 LTS (Focal Fossa),
 * Ubuntu 22.04 LTS (Jammy Jellyfish).
 
 This Role was tested with [GitHub Actions](https://github.com/features/actions

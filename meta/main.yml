@@ -13,22 +13,18 @@ galaxy_info:
     - name: EL
       versions:
         - "9"
-        - "8"
-        - "7"
-    - name: Fedora
-      versions:
-        - "35"
-        - "36"
-        - "37"
-        - "38"
-        - "39"
+    # - name: Fedora
+    #   versions:
+    #     - "35"
+    #     - "36"
+    #     - "37"
+    #     - "38"
+    #     - "39"
     - name: Ubuntu
       versions:
-        - focal
         - jammy
     - name: Debian
       versions:
-        - buster
         - bullseye
         - bookworm
   galaxy_tags:

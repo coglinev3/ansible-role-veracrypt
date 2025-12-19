@@ -12,6 +12,7 @@ galaxy_info:
     # - name: Alpine
     - name: EL
       versions:
+        - "10"
         - "9"
     # - name: Fedora
     #   versions:

@@ -40,6 +40,7 @@ jobs:
           # - distro_version: 'alpine-3.16'
           # - distro_version: 'alpine-3.17'
           - distro_version: 'almalinux-9'
+          - distro_version: 'almalinux-10'
           - distro_version: 'debian-11'
           - distro_version: 'debian-12'
           - distro_version: 'debian-13'

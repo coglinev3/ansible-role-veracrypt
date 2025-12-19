@@ -10,6 +10,7 @@ os specific package provided by the author [IDRIX](https://www.idrix.fr).
 
 The following Linux distributions are supported:
 
+* Amazon Linux 2023,
 * Debian 11 (Bullseye),
 * Debian 12 (Bookworm),
 * Debian 13 (Trixie),

@@ -10,6 +10,9 @@ galaxy_info:
   min_ansible_version: "2.14"
   platforms:
     # - name: Alpine
+    - name: Amazon Linux
+      versions:
+        - "2023"
     - name: EL
       versions:
         - "10"
